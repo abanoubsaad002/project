@@ -1,0 +1,420 @@
+{%load static%}
+<!DOCTYPE html>
+<html  lang="en ">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>Abanoub</title>
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'plugins/jquery_datepacker/jquery_ui.css' %}">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte_ar.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  </head>
+  <body dir="rtl" class="hold-transition sidebar-mini">
+
+{%include 'pages/Navbar.html'%}
+{%include 'pages/Sidebar.html'%}
+{% block content %}
+    
+{% endblock %}
+{%include 'pages/Footer.html'%}
+</div>
+<!-- ./wrapper -->
+
+
+<!-- REQUIRED SCRIPTS -->
+<script src="{% static 'plugins/jquery_datepacker/jquery_ui.js'%}"></script>
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js'%}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<!-- AdminLTE -->
+<script src="{% static 'dist/js/adminlte.js'%}"></script>
+<!-- OPTIONAL SCRIPTS -->
+
+<script src="{% static 'plugins/chart.js/Chart.min.js'%}"></script>
+
+<script src="{% static 'dist/js/demo.js'%}"></script>
+<!--<script src="{% static dist/js/pages/dashboard3.js'"></script>
+-->
+<script>
+
+
+
+
+
+
+  $(document).ready(function(){
+    var total = 0;
+    $(".s").each(function(){
+      $(this).hide()
+      var salery = $(this).text()
+      total += parseInt(salery)
+    });
+    $("#totalsalarys").text($("#totalsalarys").text()+total)
+  });
+
+var qqq = 0;
+var qwe = 0;
+$(".asd").each(function(){
+  $(this).hide();
+  var q = $(this).text()
+  qqq += parseInt(q)
+});
+$(".awe").text(qqq)
+$(".awe").hide();
+$(".sdf").each(function(){
+  $(this).hide();
+  var w = $(this).text()
+  qwe += parseInt(w)
+});
+$(".azx").text(qwe)
+
+$(".azx").hide();
+
+  $('#catinput').hide();
+  $('#addcat').click(function(){
+    $('#catinput').show();
+  });
+  $('#backcat').click(function(){
+    $('#catinput').hide();
+  });
+
+
+    
+  {% for book in name %}
+    $(".cat{{book.category.id}}").click(function(){
+      $(".bookhide").hide()
+      $(".book{{book.category.id}}").show()
+    });
+    $(".status{{book.status}}").click(function(){
+      $(".bookhide").hide()
+      $(".book{{book.status}}").show()
+
+
+    });
+  {% endfor %}
+    
+
+  $("#sss").keyup(function(){
+    $("#ddd").val($("#sss").val()*$("#aaa").val())
+  });
+
+</script>
+<script>
+  $(document).ready(function(){
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    });
+    /*here i will make loop for get id category and status for contact with books */
+    /*حساب اجمالي الارباح و هي عبارة عن حاصل جمع سعر الكتب عند البيع بالاضافة الى سعر استعارة الكتاب*/
+  });
+</script>
+<script>
+ 
+  
+
+
+    $(function () {
+  'use strict'
+ 
+  var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+  }
+
+  var mode      = 'index'
+  var intersect = true
+
+  var $salesChart = $('#sales-chart')
+
+  var salesChart  = new Chart($salesChart, {
+
+    type   : 'bar',
+    
+    data   : {
+
+      labels  : [
+          
+
+        'تفاصيل الارباح',
+
+      ],
+
+
+      datasets: [
+        {
+          backgroundColor: '#007bff',
+          borderColor    : '#007bff',
+          data           : [ 
+            $(".awe").text(),
+          ]
+        },
+        {
+          backgroundColor: '#ced4da',
+          borderColor    : '#ced4da',
+          data           : [ 
+            $(".azx").text(),
+          ]
+        }
+      ]
+    },
+
+   
+   
+   options: {
+      maintainAspectRatio: false,
+      tooltips           : {
+        mode     : mode,
+        intersect: intersect
+      },
+      hover              : {
+        mode     : mode,
+        intersect: intersect
+      },
+      legend             : {
+        display: false
+      },
+      scales             : {
+        yAxes: [{
+          // display: false,
+          gridLines: {
+            display      : true,
+            lineWidth    : '4px',
+            color        : 'rgba(0, 0, 0, .2)',
+            zeroLineColor: 'transparent'
+          },
+          ticks    : $.extend({
+            beginAtZero: true,
+
+            // Include a dollar sign in the ticks
+            callback: function (value, index, values) {
+              if (value >= 1000) {
+                value /= 1000
+                value += 'k'
+              }
+              return '$' + value
+            }
+          }, ticksStyle)
+        }],
+        xAxes: [{
+          display  : true,
+          gridLines: {
+            display: false
+          },
+          ticks    : ticksStyle
+        }]
+      }
+    }
+  });
+  
+ var pieChart = document.getElementById('visitors-chart').getContext('2d')
+
+  var myPieChart = new Chart(pieChart, {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: ['{{bookavailble}}','{{booksold}}','{{bookrental}}'],
+        backgroundColor :["#27c100","#f3545d","#fdaf4b"],
+        borderWidth: 10,
+        
+      }],
+      labels: ['Available', 'Sold', 'Rented'] 
+    },
+    options : {
+      responsive: true, 
+      maintainAspectRatio: false,
+      legend: {
+        position : 'bottom',
+        labels : {
+          fontColor: '#000',
+          fontSize: 15,
+          usePointStyle : true,
+          padding:30
+        }
+      },
+      pieceLabel: {
+        render: 'percentage',
+        fontColor: 'white',
+        fontSize: 14,
+      },
+
+
+    }
+  })
+
+    })
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% comment %} <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            
+
+            {% load  static  %}
+            <meta charset="UTF-8">
+            <link rel="stylesheet" href="{% static 'css/pops.css' %}">  
+            <title>avatar</title>
+            <meta http-equiv="refresh" content="">
+
+        </head>
+        <body>
+            {% comment %} <img src="{%static 'image/kkkkk.webp' %}" > {% endcomment %}
+            {% comment %} <div  class="abanub">
+                
+
+                
+                <header>
+                    <a href="#" class="logo">avatar</a>
+                    <ul>
+                        <li><a href="{%url 'index' %}">home</a></li>
+                        <li><a href="video.html">video</a></li>
+                        <li><a href="photo.html">photo</a></li>
+                        <li><a href="{%url 'pop' %}">download</a></li>
+                        <li><a href="#">about</a></li>
+                    </ul>
+                </header>
+                <div class="pop">
+                    <h2>avatar</h2>
+                    <p> Hi , this project just test cods {html and css} , 
+                        try to be learn about {html and css} , 
+                        you will happy when vist the site , 
+                        wish to happy day
+                    </p>
+                    <a href="king.html">try this</a>
+                </div>
+            </div> {% endcomment %}
+            {% comment %} {% include 'test.html' %} {% endcomment %}
+
+
+            {% comment %} <div class="title">
+                <div class="head">
+                    <h1>product</h1>
+                    <p>Product selling system</p>
+                </div>
+                <div class="inputs">
+                    
+                    <input placeholder="product" type="text" id="product" >
+                    <div class="price">
+                        <input onkeyup = "getTotal()" type="number" id ="price"  placeholder="price" >
+                        <input onkeyup = "getTotal()" type="number" id ="taxes"   placeholder="taxes"  >
+                        <input onkeyup = "getTotal()" type="number" id ="ads"     placeholder="ads" >
+                        <input onkeyup = "getTotal()" type="number" id ="discount"placeholder="discount"  >
+                        <small id="total"></small>
+                    </div>
+                <input placeholder="count" type="number" id="count" >
+                <input placeholder="category" type="text" id="category" >
+                <button  id="submit">Create</button>
+                </div>
+                <div class="outputs">
+                    <div class="searchproduct">
+                        <input onkeyup ="searchData(this.value)" type="text" id="Search"placeholder="Search">
+                        <div class="btnSearch">
+                            <button onclick="getsearchMood(this.id)" id="searchproduct">Search By product</button>
+                            <button onclick="getsearchMood(this.id)" id="searchcategory">Search By Category</button>
+                        </div>
+                    </div>
+                    <div id="deleteAll">
+            
+                    </div>
+                    <table>
+                        <tr>
+                            <th>id</th>
+                            <th>product</th>
+                            <th>price</th>
+                            <th>taxes</th>
+                            <th>ads</th>
+                            <th>discound</th>
+                            <th>total</th>
+                            <th>category</th>
+                            <th>update</th>
+                            <th>delete</th>
+                        </tr>
+                        <tbody id="ssss">
+                        
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endcomment %}
+            {% comment %} </body><script src="product.js'%}"> </script> {% endcomment %}
+            {% comment %} {{x}} {% endcomment %}
+            {% comment %} </html> {% endcomment %}
+
+
+            
+            
+        {% comment %} </body>
+
+        </html>
+        <!-- --> {% endcomment %} 
