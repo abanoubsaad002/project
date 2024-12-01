@@ -1,0 +1,199 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#toSoping{
+    height: 100vh;
+    background-image: url(aaa.JPG);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+}
+#asd{
+    
+    background: rgba(0, 0, 0, 0.787);
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding:5px 0 5px 0;
+    color: white;
+}
+#www{
+    
+    background: rgba(255, 0, 0, 0.712);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin: 10px; */
+    padding: 15px;
+    
+}
+#ppp input{
+    font-size: 20px;
+
+    padding:5px;
+    margin: 6px;
+    border-radius: 10px;
+}
+#ppp button{
+    width: 270px;
+}
+button{
+    display: block;
+    background: rgba(212, 91, 11, 0.776);
+    color: rgb(48, 8, 210);
+    padding-bottom: 10px;
+    margin: 5px;
+    font-size: 20px;
+    width: 250px;
+    height: 30px;
+    cursor: pointer ;
+    border-radius: 10px ;
+    border: 2px solid black;
+    position: relative;
+    z-index: 3;
+        /* margin: 10px;
+        padding: 15px; */
+}
+
+#form2{
+    display: none;
+}
+
+#play{
+    display: none;
+    background-image: url(awwwwwwwww.JPG);
+    background-size: cover;     
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width : 100%;
+    position: relative; /* تمكين الطبقات */
+    overflow: hidden;
+    
+}
+#hello{
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    
+}
+#hello h1{
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    position: relative; /* جعل النص فوق الطبقة الشفافة */
+    color: #00fffb; /* لون النص */
+    font-size: 45px; /* حجم الخط */
+    z-index: 5; /* فوق الطبقة الشفافة */
+    /* مركز النص */
+
+}
+
+.overlay {
+    
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0); /* شفافية كاملة بدون لون */
+    backdrop-filter: blur(2px); /* إضافة تأثير ضبابي */
+    z-index: 3; /* خلف النص */
+}
+.overlay video{
+    border-radius: 20px;
+}
+ul{
+    font-size: large;
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+ul li {
+    justify-content: space-around;
+    z-index: 5;
+    font-size: 25px;
+}
+
+
+ul li a,button{
+    position: relative;
+    z-index: 3;
+    color: white;
+    width: 100px;
+}
+
+.shopping-cart {
+    z-index: 3;
+    position: relative;
+    width: 200px;
+    height: 150px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.cart-icon {
+    z-index: 3;
+    position: absolute;
+    top: -25px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: #f39c12;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+}
+
+#yalla{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    
+}
+#yalla img {
+    border-radius: 20px;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+#sllear{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+#sllear img{
+    border-radius: 20px;
+    opacity: 0.8;
+    margin-bottom: 300px;
+}
